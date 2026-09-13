@@ -1,1 +1,30 @@
+# Environment variables
 .env
+.env.local
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+nutrition_app.db
+
+# Logs and runtime data
+logs/
+*.log
+data/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Virtual environment
+venv/
+.venv/
+env/
