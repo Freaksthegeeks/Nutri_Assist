@@ -169,7 +169,7 @@ class NLPNutritionAnalyzer:
         # Extract potential ingredients from noun chunks (more accurate than individual nouns)
         for chunk in doc.noun_chunks:
             # Clean the chunk text
-            cleaned_chunk = re.sub(r'[^ws]', '', chunk.text).strip()
+            cleaned_chunk = re.sub(r'[^\w\s]', '', chunk.text).strip()
             if (len(cleaned_chunk) > 2 and 
                 not any(stopword in cleaned_chunk for stopword in ['tablespoon', 'teaspoon', 'cup', 'ounce', 'pound', 'gram', 'liter', 'piece', 'slice'])):
                 ingredients.append(cleaned_chunk)
@@ -320,7 +320,7 @@ class NLPNutritionAnalyzer:
             if any(item in ingredient.lower() for item in items):
                 if category == 'proteins':
                     base_values.update({'calories': 150, 'protein_g': 25, 'fat_total_g': 5, 'carbohydrates_total_g': 0, 'fiber_g': 0, 'sugar_g': 0})
-                elif category == 'grains':
+                elif category in ['carbs', 'grains']:
                     base_values.update({'calories': 100, 'protein_g': 3, 'fat_total_g': 1, 'carbohydrates_total_g': 20, 'fiber_g': 2, 'sugar_g': 1})
                 elif category == 'vegetables':
                     base_values.update({'calories': 25, 'protein_g': 1, 'fat_total_g': 0, 'carbohydrates_total_g': 5, 'fiber_g': 2, 'sugar_g': 3})
